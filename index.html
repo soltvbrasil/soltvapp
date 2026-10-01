@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#03162d">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <meta name="description" content="SolTV - Sua TV Online em um só lugar. Filmes, séries, esportes e muito mais.">
+  <title>SolTV - Sua TV Online</title>
+
+  <style>
+    :root {
+      --navy: #03162d;
+      --navy-2: #061d39;
+      --white: #ffffff;
+      --muted: #d9e5f2;
+      --yellow: #ffd20a;
+      --cyan: #08b9ff;
+      --green: #18df73;
+      --purple: #7842ee;
+      --card-radius: 20px;
+      --content-width: 1410px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      min-width: 320px;
+      background: var(--navy);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 50% 100%, rgba(0, 133, 255, .13), transparent 42%),
+        var(--navy);
+      color: var(--white);
+      font-family: "Poppins", Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       HERO
+       ========================= */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: clamp(540px, 54vw, 690px);
+      height: 56vh;
+      overflow: hidden;
+      background: #03162d;
+    }
+
+    .hero__image {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 39%;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Dark overlay keeps the text readable without hiding the original banner. */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg,
+          rgba(1, 14, 31, .18) 0%,
+          rgba(1, 14, 31, .02) 48%,
+          rgba(1, 14, 31, .00) 100%),
+        linear-gradient(180deg,
+          rgba(0, 9, 22, .08) 0%,
+          rgba(0, 9, 22, .00) 72%,
+          rgba(0, 9, 22, .28) 100%);
+    }
+
+    .hero__content {
+      position: relative;
+      width: min(var(--content-width), calc(100% - 48px));
+      height: 100%;
+      margin: 0 auto;
+      padding-top: clamp(30px, 4.5vw, 68px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .logo-frame {
+      position: relative;
+      width: clamp(235px, 20vw, 310px);
+      height: auto;
+      flex: 0 0 auto;
+    }
+
+    .logo-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+
+    .hero__copy {
+      margin-top: clamp(72px, 7.4vw, 112px);
+      max-width: 650px;
+    }
+
+    .hero__title {
+      font-size: clamp(42px, 4.1vw, 68px);
+      line-height: 1.12;
+      padding-bottom: .10em;
+      overflow: visible;
+      letter-spacing: -1.8px;
+      font-weight: 800;
+      font-style: italic;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+
+    .hero__title .gradient {
+      display: block;
+      margin-top: 8px;
+      line-height: 1.16;
+      padding-bottom: .12em;
+      overflow: visible;
+      background: linear-gradient(90deg, #00a7ff 0%, #19d6ec 43%, #c8ef5b 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero__description {
+      margin-top: 24px;
+      font-size: clamp(17px, 1.35vw, 22px);
+      line-height: 1.42;
+      font-weight: 400;
+      color: #e6edf6;
+      letter-spacing: .1px;
+    }
+
+    /* =========================
+       LINKS AREA
+       ========================= */
+    .links-section {
+      position: relative;
+      z-index: 3;
+      margin-top: -70px;
+      min-height: 44vh;
+      padding: 30px 24px 115px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% -35%, rgba(8, 91, 177, .28), transparent 56%),
+        linear-gradient(180deg, #041a34 0%, #02152b 72%, #03172e 100%);
+    }
+
+    .links-section__inner {
+      position: relative;
+      z-index: 2;
+      width: min(var(--content-width), 100%);
+      margin: 0 auto;
+    }
+
+    .notice {
+      width: min(1060px, 100%);
+      min-height: 110px;
+      margin: 0 auto 20px;
+      padding: 20px 38px;
+      border: 2px solid rgba(86, 145, 201, .38);
+      border-radius: 60px;
+      background: rgba(4, 28, 56, .72);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 8px 35px rgba(0,0,0,.10);
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .notice__icon {
+      width: 58px;
+      height: 64px;
+      flex: 0 0 58px;
+      display: grid;
+      place-items: center;
+    }
+
+    .notice__icon svg {
+      width: 58px;
+      height: 64px;
+      display: block;
+    }
+
+    .notice__text {
+      min-width: 0;
+    }
+
+    .notice__title {
+      font-size: clamp(18px, 1.65vw, 27px);
+      line-height: 1.2;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .notice__sub {
+      margin-top: 4px;
+      font-size: clamp(15px, 1.25vw, 21px);
+      line-height: 1.25;
+      color: #e0e8f2;
+      font-weight: 400;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .link-card {
+      position: relative;
+      min-width: 0;
+      min-height: 168px;
+      padding: 17px 18px 18px;
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      box-shadow:
+        0 8px 18px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.16);
+      transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        filter .22s ease;
+    }
+
+    .link-card::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 150%;
+      height: 80%;
+      left: -25%;
+      bottom: -48%;
+      border-radius: 50% 50% 0 0;
+      background: rgba(255,255,255,.13);
+      transform: rotate(-8deg);
+    }
+
+    .link-card:hover {
+      transform: translateY(-5px);
+      filter: brightness(1.06);
+      box-shadow:
+        0 14px 28px rgba(0,0,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.2);
+    }
+
+    .link-card:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 4px;
+    }
+
+    .link-card--1 {
+      background: linear-gradient(145deg, #0ab9fa 0%, #0878ec 62%, #0b5ee2 100%);
+    }
+
+    .link-card--2 {
+      background: linear-gradient(145deg, #ffd900 0%, #ffb900 48%, #f48a0b 100%);
+    }
+
+    .link-card--3 {
+      background: linear-gradient(145deg, #18e478 0%, #0acb72 48%, #00a969 100%);
+    }
+
+    .link-card--4 {
+      background: linear-gradient(145deg, #965cf5 0%, #7038e8 55%, #5122d3 100%);
+    }
+
+    .link-card--5 {
+      background: linear-gradient(145deg, #13d8ee 0%, #0db7e3 52%, #0798d4 100%);
+    }
+
+    .link-card__number {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      width: 45px;
+      height: 34px;
+      border-radius: 50px;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      font-weight: 700;
+      background: rgba(0,0,0,.10);
+      color: rgba(255,255,255,.95);
+    }
+
+    .link-card__chain {
+      width: 46px;
+      height: 46px;
+      margin-top: 2px;
+      margin-bottom: 7px;
+      display: block;
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,.08));
+    }
+
+    .link-card__name {
+      font-size: clamp(16px, 1.15vw, 20px);
+      line-height: 1.2;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .link-card__arrow {
+      position: absolute;
+      right: 13px;
+      bottom: 13px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      color: #0c73d9;
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    }
+
+    .link-card--2 .link-card__arrow { color: #f39a00; }
+    .link-card--3 .link-card__arrow { color: #08a961; }
+    .link-card--4 .link-card__arrow { color: #5d30d7; }
+    .link-card--5 .link-card__arrow { color: #0a96cb; }
+
+    .link-card__arrow svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    /* Decorative waves at the bottom, matching the demo. */
+    .waves {
+      position: absolute;
+      z-index: 1;
+      left: -8%;
+      bottom: -2px;
+      width: 116%;
+      height: 115px;
+      pointer-events: none;
+    }
+
+    .waves::before,
+    .waves::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transform: rotate(-1deg);
+    }
+
+    .waves::before {
+      bottom: -72px;
+      height: 150px;
+      background: linear-gradient(90deg, #ffd800 0%, #ffd800 13%, #0b92ed 39%, #09bfe9 74%, #63d67b 100%);
+    }
+
+    .waves::after {
+      bottom: -93px;
+      height: 150px;
+      background: linear-gradient(90deg, #075ee4 0%, #0798ed 30%, #08bfe8 68%, #35b8c5 100%);
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+    @media (max-width: 1100px) {
+      .hero {
+        height: 62vh;
+        min-height: 610px;
+      }
+
+      .hero__copy {
+        max-width: 58%;
+        margin-top: 7vw;
+      }
+
+      .hero__title {
+        font-size: clamp(38px, 5vw, 60px);
+      }
+
+      .link-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .links-section {
+        padding-bottom: 130px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        height: 620px;
+        min-height: 620px;
+      }
+
+      .hero__image {
+        object-position: 63% center;
+      }
+
+      .hero::after {
+        background:
+          linear-gradient(90deg, rgba(1, 14, 31, .68) 0%, rgba(1, 14, 31, .30) 62%, rgba(1, 14, 31, .12) 100%),
+          linear-gradient(180deg, rgba(0, 9, 22, .12) 0%, rgba(0, 9, 22, .12) 72%, rgba(0, 9, 22, .55) 100%);
+      }
+
+      .hero__content {
+        width: min(100% - 34px, 560px);
+        padding-top: 27px;
+        padding-bottom: 55px;
+      }
+
+      .logo-frame {
+        width: 205px;
+      }
+
+      .hero__copy {
+        max-width: 100%;
+        margin-top: 72px;
+      }
+
+      .hero__title {
+        font-size: clamp(40px, 11vw, 58px);
+        line-height: 1.12;
+        padding-bottom: .12em;
+        letter-spacing: -1.8px;
+      }
+
+      .hero__title .gradient {
+        margin-top: 9px;
+        line-height: 1.16;
+        padding-bottom: .14em;
+      }
+
+      .hero__description {
+        margin-top: 23px;
+        max-width: 470px;
+        font-size: 19px;
+      }
+
+      .links-section {
+        margin-top: -90px;
+        min-height: auto;
+        padding: 18px 16px 105px;
+      }
+
+      .notice {
+        min-height: 0;
+        padding: 17px 20px;
+        border-radius: 30px;
+        gap: 14px;
+        margin-bottom: 17px;
+      }
+
+      .notice__icon,
+      .notice__icon svg {
+        width: 43px;
+        height: 49px;
+        flex-basis: 43px;
+      }
+
+      .notice__title {
+        font-size: 17px;
+      }
+
+      .notice__sub {
+        font-size: 14px;
+      }
+
+      .link-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+      }
+
+      .link-card {
+        min-height: 151px;
+        border-radius: 17px;
+        padding: 14px 12px;
+      }
+
+      .link-card__number {
+        top: 12px;
+        left: 12px;
+        width: 39px;
+        height: 29px;
+        font-size: 13px;
+      }
+
+      .link-card__chain {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 6px;
+      }
+
+      .link-card__name {
+        font-size: 15px;
+      }
+
+      .link-card__arrow {
+        width: 33px;
+        height: 33px;
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .link-card__arrow svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .waves {
+        height: 82px;
+      }
+
+      .waves::before {
+        bottom: -67px;
+        height: 125px;
+      }
+
+      .waves::after {
+        bottom: -83px;
+        height: 125px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero {
+        height: 600px;
+        min-height: 600px;
+      }
+
+      .hero__image {
+        object-position: 67% center;
+      }
+
+      .hero__copy {
+        margin-top: 66px;
+      }
+
+      .hero__title {
+        font-size: 40px;
+        line-height: 1.08;
+      }
+
+      .hero__description {
+        font-size: 17px;
+      }
+
+      .links-section {
+        margin-top: -85px;
+        padding-top: 16px;
+      }
+
+      .notice {
+        padding: 15px 14px;
+        gap: 10px;
+      }
+
+      .notice__icon,
+      .notice__icon svg {
+        width: 38px;
+        height: 44px;
+        flex-basis: 38px;
+      }
+
+      .notice__title {
+        font-size: 15px;
+      }
+
+      .notice__sub {
+        font-size: 12.5px;
+      }
+
+      .link-grid {
+        gap: 10px;
+      }
+
+      .link-card {
+        min-height: 140px;
+      }
+
+      .link-card__name {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .link-card {
+        min-height: 132px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .link-card {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero__image" src="banner.png" alt="" aria-hidden="true">
+
+      <div class="hero__content">
+        <div class="logo-frame" aria-label="SolTV">
+          <img src="logo.png" alt="SolTV">
+        </div>
+
+        <div class="hero__copy">
+          <h1 class="hero__title">
+            Sua TV Online
+            <span class="gradient">em um só lugar!</span>
+          </h1>
+
+          <p class="hero__description">
+            Filmes, séries, esportes e muito mais<br>
+            Tudo o que você ama, quando e onde quiser
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="links-section">
+      <div class="links-section__inner">
+
+        <div class="notice">
+          <div class="notice__icon" aria-hidden="true">
+            <svg viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 2L58 12V32C58 49.5 47.3 64.4 32 70C16.7 64.4 6 49.5 6 32V12L32 2Z" fill="#FFD10A"/>
+              <path d="M32 19C34.8 19 37 21.2 36.7 24L35.5 39.5C35.3 41.4 33.8 42.8 32 42.8C30.2 42.8 28.7 41.4 28.5 39.5L27.3 24C27 21.2 29.2 19 32 19Z" fill="#17304D"/>
+              <circle cx="32" cy="50.5" r="3.1" fill="#17304D"/>
+            </svg>
+          </div>
+
+          <div class="notice__text">
+            <p class="notice__title">Se o link estiver bloqueado, acesse um dos links alternativos abaixo</p>
+            <p class="notice__sub">Assim, você continua assistindo ao SolTV sem interrupções!</p>
+          </div>
+        </div>
+
+        <div class="link-grid">
+
+          <a class="link-card link-card--1" href="https://soltvapp.art/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SolTV Link 1">
+            <span class="link-card__number">01</span>
+            <svg class="link-card__chain" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M19.2 29.2L16.5 31.9C13.4 35 8.4 35 5.3 31.9C2.2 28.8 2.2 23.8 5.3 20.7L12.7 13.3C15.8 10.2 20.8 10.2 23.9 13.3C25.5 14.9 26.3 17 26.3 19.1" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M28.8 18.8L31.5 16.1C34.6 13 39.6 13 42.7 16.1C45.8 19.2 45.8 24.2 42.7 27.3L35.3 34.7C32.2 37.8 27.2 37.8 24.1 34.7C22.5 33.1 21.7 31 21.7 28.9" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M16 24H32" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+            </svg>
+            <span class="link-card__name">SolTV Link 1</span>
+            <span class="link-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H18M13 7L18 12L13 17" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <a class="link-card link-card--2" href="https://soltvapp.click/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SolTV Link 2">
+            <span class="link-card__number">02</span>
+            <svg class="link-card__chain" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M19.2 29.2L16.5 31.9C13.4 35 8.4 35 5.3 31.9C2.2 28.8 2.2 23.8 5.3 20.7L12.7 13.3C15.8 10.2 20.8 10.2 23.9 13.3C25.5 14.9 26.3 17 26.3 19.1" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M28.8 18.8L31.5 16.1C34.6 13 39.6 13 42.7 16.1C45.8 19.2 45.8 24.2 42.7 27.3L35.3 34.7C32.2 37.8 27.2 37.8 24.1 34.7C22.5 33.1 21.7 31 21.7 28.9" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M16 24H32" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+            </svg>
+            <span class="link-card__name">SolTV Link 2</span>
+            <span class="link-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H18M13 7L18 12L13 17" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <a class="link-card link-card--3" href="https://soltvapp.cyou/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SolTV Link 3">
+            <span class="link-card__number">03</span>
+            <svg class="link-card__chain" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M19.2 29.2L16.5 31.9C13.4 35 8.4 35 5.3 31.9C2.2 28.8 2.2 23.8 5.3 20.7L12.7 13.3C15.8 10.2 20.8 10.2 23.9 13.3C25.5 14.9 26.3 17 26.3 19.1" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M28.8 18.8L31.5 16.1C34.6 13 39.6 13 42.7 16.1C45.8 19.2 45.8 24.2 42.7 27.3L35.3 34.7C32.2 37.8 27.2 37.8 24.1 34.7C22.5 33.1 21.7 31 21.7 28.9" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M16 24H32" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+            </svg>
+            <span class="link-card__name">SolTV Link 3</span>
+            <span class="link-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H18M13 7L18 12L13 17" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <a class="link-card link-card--4" href="https://soltvapp.help/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SolTV Link 4">
+            <span class="link-card__number">04</span>
+            <svg class="link-card__chain" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M19.2 29.2L16.5 31.9C13.4 35 8.4 35 5.3 31.9C2.2 28.8 2.2 23.8 5.3 20.7L12.7 13.3C15.8 10.2 20.8 10.2 23.9 13.3C25.5 14.9 26.3 17 26.3 19.1" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M28.8 18.8L31.5 16.1C34.6 13 39.6 13 42.7 16.1C45.8 19.2 45.8 24.2 42.7 27.3L35.3 34.7C32.2 37.8 27.2 37.8 24.1 34.7C22.5 33.1 21.7 31 21.7 28.9" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M16 24H32" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+            </svg>
+            <span class="link-card__name">SolTV Link 4</span>
+            <span class="link-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H18M13 7L18 12L13 17" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <a class="link-card link-card--5" href="https://soltvapp.my/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SolTV Link 5">
+            <span class="link-card__number">05</span>
+            <svg class="link-card__chain" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M19.2 29.2L16.5 31.9C13.4 35 8.4 35 5.3 31.9C2.2 28.8 2.2 23.8 5.3 20.7L12.7 13.3C15.8 10.2 20.8 10.2 23.9 13.3C25.5 14.9 26.3 17 26.3 19.1" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M28.8 18.8L31.5 16.1C34.6 13 39.6 13 42.7 16.1C45.8 19.2 45.8 24.2 42.7 27.3L35.3 34.7C32.2 37.8 27.2 37.8 24.1 34.7C22.5 33.1 21.7 31 21.7 28.9" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M16 24H32" stroke="white" stroke-width="4.2" stroke-linecap="round"/>
+            </svg>
+            <span class="link-card__name">SolTV Link 5</span>
+            <span class="link-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H18M13 7L18 12L13 17" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+        </div>
+      </div>
+
+      <div class="waves" aria-hidden="true"></div>
+    </section>
+  </main>
+
+</body>
+</html>
